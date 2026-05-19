@@ -20,13 +20,13 @@ Goes all the way back to the first screen in the current stack.
 Removes every screen above it.
 
 */}
-       <Button onPress={()=>navigation.popToTop()} title="Go to Home" />
+       <Button onPress={()=>navigation.navigate('Overview')} title="Go to Home" />
 
 
         {/* 
         replace() is used to swap the current screen with another screen.
 It removes the current screen from the stack and adds the new one in its place.*/}
-  {/*      <Button onPress={()=>navigation.replace('Home')} title="Go to Home" /> */}
+       {/* <Button onPress={()=>navigation.replace('Home')} title="Go to Home" /> */}
     </View>
   )
 }

@@ -6,71 +6,52 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Ionicons } from '@expo/vector-icons';
+import SearchScreen from '../../screens/SearchScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from '../../screens/HomeScreen';
+import DetailScreen from '../../screens/DetailScreen';
 
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
+//for stack starts
+const HomeStack=createNativeStackNavigator()
+
+function HomeStackScreens(){
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={HomeScreen} />
+            
+            <HomeStack.Screen name="Details" component={DetailScreen} />
+
+        </HomeStack.Navigator>
+        
+    )
 }
 
-function SearchScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Search Screen</Text>
-    </View>
-  );
-}
 
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile Screen</Text>
-    </View>
-  );
-}
+//for stack starts ends 
 
 const Tab = createBottomTabNavigator();
 
 
 function MyTab(){
     return (
-<Tab.Navigator initialRouteName='Search' 
-screenOptions={({route})=>({
-    tabBarStyle:{
-        height:80,
-        paddingBottom:10
-    },
-    tabBarActiveTintColor:'tomato',
-    tabBarInactiveTintColor:'gray',
+<Tab.Navigator>
     
-    tabBarIcon:({focused,color,size})=>{
-        const icon = route.name ==='Home' 
-        ? (focused ? 'home' :'home-outline')
-        : route.name ==='Search' 
-        ? (focused ?'search':'search-outline')
-        : (focused ?'chatbubble' :"chatbubble-outline");
+{/* We will apply tab and stack use */}
+           {/* we want home and detail screen stacked */}
+            
+            <Tab.Screen  name="Overview" component={HomeStackScreens}
+            options={{
+                headerShown:false
+            }}
+            />
 
-        return <Ionicons name={icon as any} size={size} color={color} />
-    }
-})}
->
-        {/* <Tab.Screen name="Home" component={HomeScreen}
-        options={{
-            title:"Dashboard",
-            tabBarLabel:'Start'
-        }}
+
+           <Tab.Screen name="Search" component ={SearchScreen} />
+           <Tab.Screen name="Profile" component ={ProfileScreen} />
+
         
-        /> */}
-        <Tab.Screen name="Home" component={HomeScreen}
-        
-        />
-        <Tab.Screen name="Search" component={SearchScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen}
-        options={{ tabBarBadge:3}}
-        />
       </Tab.Navigator>
     )
 }

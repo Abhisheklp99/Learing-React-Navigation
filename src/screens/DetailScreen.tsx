@@ -10,8 +10,8 @@ const DetailScreen = ({route}:any) => {
     <View>
       <Text>DetailScreen :Hi {username}</Text>
 
-       {/* <Button onPress={()=>navigation.goBack('Home')} title="Go to Home" />
-         */}
+       {/* <Button onPress={()=>navigation.goBack('Home')} title="Go to Home" /> */}
+        
        <Button onPress={()=>navigation.navigate('Profile')} title="Go to Profile" />
       
     </View>
