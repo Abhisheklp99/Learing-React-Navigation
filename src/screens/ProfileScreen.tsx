@@ -20,7 +20,7 @@ Goes all the way back to the first screen in the current stack.
 Removes every screen above it.
 
 */}
-       <Button onPress={()=>navigation.popToTop('')} title="Go to Home" />
+       <Button onPress={()=>navigation.popToTop()} title="Go to Home" />
 
 
         {/* 
